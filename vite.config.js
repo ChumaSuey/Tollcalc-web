@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/tollcalc-web/',
+  base: '/Tollcalc-web/',
   plugins: [react()],
   test: {
     environment: 'node',

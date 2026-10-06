@@ -27,6 +27,12 @@
   letter-spacing: -0.02em;
 }
 
+.app__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .theme-toggle {
   flex: none;
   width: 44px;
@@ -41,11 +47,19 @@
   cursor: pointer;
   transition:
     background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
     transform 0.1s ease;
 }
 
 .theme-toggle:hover {
   background: var(--surface-2);
+}
+
+.theme-toggle.is-active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 16%, var(--surface));
+  color: var(--accent);
 }
 
 .theme-toggle:active {

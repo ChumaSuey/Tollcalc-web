@@ -1,6 +1,7 @@
 # Calculadora de Peajes (Toll Calculator — Web)
 
-A fast, mobile-first web version of the Tkinter **TollCalculator** desktop app,
+A fast, mobile-first web version of the Tkinter
+[**TollCalculator**](https://github.com/ChumaSuey/TollCalculator) desktop app,
 built with **React + Vite**. Designed to be opened on a phone while working the
 tolls. No backend — it runs entirely in the browser and is hosted on GitHub Pages.
 
@@ -29,6 +30,9 @@ pnpm install
 pnpm dev
 ```
 
+The dev server serves the app under the `base` path:
+`http://localhost:5173/Tollcalc-web/`.
+
 ## Scripts
 
 | Command          | Description                     |
@@ -50,23 +54,17 @@ pnpm test
 
 ## Deploying to GitHub Pages
 
-This repo ships a workflow (`.github/workflows/deploy.yml`) that builds and
-publishes the site on every push to `main`.
+This repo ships a workflow (`.github/workflows/deploy.yml`) that builds, tests,
+and publishes the site on every push to `main`.
 
-1. Create a new GitHub repo named **`tollcalc-web`**.
-2. Push this project to it:
+1. In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+2. Push to `main`:
    ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/<your-user>/tollcalc-web.git
-   git push -u origin main
+   git push origin main
    ```
-3. In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-4. Pushing to `main` triggers the workflow. The app goes live at
-   `https://<your-user>.github.io/tollcalc-web/`.
+3. The workflow runs and the app goes live at
+   `https://chumasuey.github.io/Tollcalc-web/`.
 
-> The Vite `base` is set to `/tollcalc-web/` in `vite.config.js`. If you rename the
-> repo or use a custom domain / user page, update `base` accordingly (use `/` for a
-> user site or custom domain).
+> The Vite `base` is set to `/Tollcalc-web/` in `vite.config.js` to match this
+> repo's name. If you rename the repo or use a custom domain / user page, update
+> `base` accordingly (use `/` for a user site or custom domain).

@@ -6,11 +6,21 @@ import { calculateTotal } from './lib/calc'
 import { useTheme } from './hooks/useTheme'
 import './App.css'
 
+const PHONE_MODE_KEY = 'tollcalc-phone-mode'
+
 let idCounter = 0
 
 function createRow() {
   idCounter += 1
   return { id: `row-${idCounter}`, monto: '', cantidad: '1' }
+}
+
+function getInitialPhoneMode() {
+  try {
+    return localStorage.getItem(PHONE_MODE_KEY) === 'true'
+  } catch {
+    return false
+  }
 }
 
 function SunIcon() {
@@ -46,12 +56,38 @@ function MoonIcon() {
   )
 }
 
+function PhoneIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="7" y="2" width="10" height="20" rx="2.5" />
+      <path d="M11 18h2" />
+    </svg>
+  )
+}
+
 export default function App() {
   const [rows, setRows] = useState(() => [createRow()])
   const [focusId, setFocusId] = useState(() => rows[0].id)
+  const [phoneMode, setPhoneMode] = useState(getInitialPhoneMode)
   const { theme, toggleTheme } = useTheme()
 
   const total = calculateTotal(rows)
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(PHONE_MODE_KEY, String(phoneMode))
+    } catch {
+      /* ignore */
+    }
+  }, [phoneMode])
 
   const updateRow = useCallback((id, field, value) => {
     setRows((prev) =>
@@ -115,17 +151,33 @@ export default function App() {
     <div className="app">
       <header className="app__header">
         <h1 className="app__title">Calculadora de Peajes</h1>
-        <button
-          type="button"
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label={
-            theme === 'dark' ? 'Activar tema claro' : 'Activar tema oscuro'
-          }
-          title={theme === 'dark' ? 'Tema claro' : 'Tema oscuro'}
-        >
-          {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-        </button>
+        <div className="app__actions">
+          <button
+            type="button"
+            className={`theme-toggle${phoneMode ? ' is-active' : ''}`}
+            onClick={() => setPhoneMode((value) => !value)}
+            aria-pressed={phoneMode}
+            aria-label={
+              phoneMode
+                ? 'Mostrar atajos de teclado'
+                : 'Ocultar atajos de teclado'
+            }
+            title={phoneMode ? 'Mostrar atajos' : 'Modo teléfono'}
+          >
+            <PhoneIcon />
+          </button>
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={
+              theme === 'dark' ? 'Activar tema claro' : 'Activar tema oscuro'
+            }
+            title={theme === 'dark' ? 'Tema claro' : 'Tema oscuro'}
+          >
+            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+          </button>
+        </div>
       </header>
 
       <main className="app__main">
@@ -141,15 +193,19 @@ export default function App() {
             />
           ))}
         </div>
-        <p className="hint">
-          Atajos: <kbd>Q</kbd> agregar · <kbd>W</kbd> reset · <kbd>E</kbd> borrar
-        </p>
+        {!phoneMode && (
+          <p className="hint">
+            Atajos: <kbd>Q</kbd> agregar · <kbd>W</kbd> reset · <kbd>E</kbd>{' '}
+            borrar
+          </p>
+        )}
       </main>
 
       <footer className="app__footer">
         <TotalBar total={total} />
         <Controls
           canRemove={rows.length > 0}
+          showHotkeys={!phoneMode}
           onAdd={addRow}
           onReset={resetRows}
           onRemove={removeLastRow}
