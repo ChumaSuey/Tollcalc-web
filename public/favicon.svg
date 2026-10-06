@@ -1,0 +1,20 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  width="64"
+  height="64"
+  role="img"
+  aria-label="Calculadora de Peajes"
+>
+  <rect width="64" height="64" rx="14" fill="#2563eb" />
+  <path d="M19 54 26 10h12l7 44z" fill="#ffffff" opacity="0.24" />
+  <path
+    d="M32 14v7M32 29v7M32 44v7"
+    stroke="#2563eb"
+    stroke-width="3"
+    stroke-linecap="round"
+  />
+  <rect x="7" y="19" width="50" height="5" rx="2.5" fill="#ffffff" />
+  <circle cx="10" cy="21.5" r="4.5" fill="#ffffff" />
+  <circle cx="54" cy="21.5" r="4.5" fill="#ffffff" />
+</svg>

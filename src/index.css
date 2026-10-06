@@ -1,0 +1,82 @@
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --surface-2: #eceef2;
+  --text: #12141a;
+  --text-muted: #6b7280;
+  --border: #e3e5ea;
+  --accent: #2563eb;
+  --accent-contrast: #ffffff;
+  --green: #15803d;
+  --green-soft: rgba(21, 128, 61, 0.1);
+  --green-border: rgba(21, 128, 61, 0.3);
+  --danger: #dc2626;
+  --shadow:
+    0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px rgba(16, 24, 40, 0.06);
+
+  color-scheme: light;
+  font-family: system-ui, 'Segoe UI', Roboto, -apple-system, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color: var(--text);
+  background: var(--bg);
+}
+
+:root[data-theme='dark'] {
+  --bg: #0e1014;
+  --surface: #171a21;
+  --surface-2: #21252e;
+  --text: #f3f4f6;
+  --text-muted: #9aa1ae;
+  --border: #2a2f39;
+  --accent: #3b82f6;
+  --accent-contrast: #ffffff;
+  --green: #34d399;
+  --green-soft: rgba(52, 211, 153, 0.12);
+  --green-border: rgba(52, 211, 153, 0.35);
+  --danger: #f87171;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
