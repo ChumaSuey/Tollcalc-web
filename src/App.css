@@ -259,6 +259,10 @@
   color: var(--danger);
 }
 
+:root:not([data-theme='dark']) .controls .btn:not(.btn--primary) {
+  border-color: color-mix(in srgb, var(--text) 22%, var(--border));
+}
+
 .btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
