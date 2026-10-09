@@ -210,6 +210,7 @@ export default function App() {
           onReset={resetRows}
           onRemove={removeLastRow}
         />
+        <p className="credit">Made by Absolute Quantum (AQ) · Chuma</p>
       </footer>
     </div>
   )

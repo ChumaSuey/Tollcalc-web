@@ -68,3 +68,7 @@ and publishes the site on every push to `main`.
 > The Vite `base` is set to `/Tollcalc-web/` in `vite.config.js` to match this
 > repo's name. If you rename the repo or use a custom domain / user page, update
 > `base` accordingly (use `/` for a user site or custom domain).
+
+## Credits
+
+Made by **Absolute Quantum (AQ)** · Chuma.
